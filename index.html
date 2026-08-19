@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NetWise | Smart Internet Management</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="brand">
+            <div class="brand-icon">N</div>
+
+            <div>
+                <h1>NetWise</h1>
+                <span>Smart Internet Management</span>
+            </div>
+        </div>
+
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            System Active
+        </div>
+
+    </nav>
+
+
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div>
+                <span class="badge">
+                    ✦ AI-Powered Internet Assistant
+                </span>
+
+                <h2>
+                    Your Internet.<br>
+                    <span>Under Control.</span>
+                </h2>
+
+                <p>
+                    NetWise helps you manage your internet package,
+                    control your daily usage, and protect your remaining data.
+                </p>
+            </div>
+
+            <div class="hero-decoration">
+                <div class="orbit">
+                    <div class="orbit-icon">📶</div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- USER FORM -->
+        <section class="card">
+
+            <div class="section-title">
+
+                <div class="title-icon">
+                    👤
+                </div>
+
+                <div>
+                    <h3>User Information</h3>
+                    <p>Enter your account details</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="input-group">
+
+                    <label>Full Name</label>
+
+                    <input
+                        id="name"
+                        type="text"
+                        placeholder="e.g. Jana Ahmed"
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        id="phone"
+                        type="tel"
+                        placeholder="e.g. 01012345678"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PACKAGE -->
+        <section class="card">
+
+            <div class="section-title">
+
+                <div class="title-icon">
+                    📦
+                </div>
+
+                <div>
+                    <h3>Internet Package</h3>
+                    <p>Tell us about your current package</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid three">
+
+                <div class="input-group">
+
+                    <label>Total Package</label>
+
+                    <div class="input-with-unit">
+
+                        <input
+                            id="package"
+                            type="number"
+                            placeholder="200"
+                        >
+
+                        <span>GB</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Used Data</label>
+
+                    <div class="input-with-unit">
+
+                        <input
+                            id="used"
+                            type="number"
+                            placeholder="120"
+                        >
+
+                        <span>GB</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Days Remaining</label>
+
+                    <div class="input-with-unit">
+
+                        <input
+                            id="days"
+                            type="number"
+                            placeholder="15"
+                        >
+
+                        <span>Days</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                id="calculateBtn"
+                class="primary-btn"
+                onclick="calculateLimit()">
+
+                <span>Analyze My Package</span>
+
+                <span>→</span>
+
+            </button>
+
+        </section>
+
+
+        <!-- DASHBOARD -->
+        <section
+            id="dashboard"
+            class="hidden">
+
+
+            <!-- WELCOME -->
+            <div class="welcome">
+
+                <div>
+
+                    <span class="small-label">
+                        YOUR PERSONAL DASHBOARD
+                    </span>
+
+                    <h2>
+                        Hello, <span id="userName">User</span> 👋
+                    </h2>
+
+                    <p>
+                        Here's your internet usage overview.
+                    </p>
+
+                </div>
+
+
+                <div class="protection-badge">
+
+                    <span>●</span>
+
+                    <div>
+                        <strong>Protection Active</strong>
+                        <small>NetWise is monitoring your usage</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATS -->
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>Total Package</span>
+
+                        <div class="stat-icon pink">
+                            📦
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        <span id="totalPackage">0</span>
+                        <small>GB</small>
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>Remaining</span>
+
+                        <div class="stat-icon green">
+                            ✓
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        <span id="remaining">0</span>
+                        <small>GB</small>
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>Days Left</span>
+
+                        <div class="stat-icon purple">
+                            📅
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        <span id="daysLeft">0</span>
+                        <small>Days</small>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- USAGE -->
+            <div class="card usage-card">
+
+                <div class="usage-header">
+
+                    <div>
+
+                        <h3>Package Usage</h3>
+
+                        <p>
+                            Your current consumption
+                        </p>
+
+                    </div>
+
+                    <strong id="usagePercent">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        id="progressBar"
+                        class="progress-bar">
+                    </div>
+
+                </div>
+
+
+                <div class="usage-info">
+
+                    <span>
+                        <b id="usedData">0</b> GB used
+                    </span>
+
+                    <span>
+                        <b id="remainingData">0</b> GB remaining
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- DAILY LIMIT -->
+            <div class="daily-limit-card">
+
+                <div class="limit-icon">
+                    🎯
+                </div>
+
+                <div class="limit-content">
+
+                    <span>
+                        Recommended Daily Limit
+                    </span>
+
+                    <strong>
+                        <span id="dailyLimit">0</span>
+                        GB
+                        <small>/ day</small>
+                    </strong>
+
+                    <p>
+                        Based on your remaining package
+                        and remaining days.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- TODAY USAGE -->
+            <div class="card">
+
+                <div class="section-title">
+
+                    <div class="title-icon">
+                        📊
+                    </div>
+
+                    <div>
+
+                        <h3>Today's Usage</h3>
+
+                        <p>
+                            Check if you're staying within your limit
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="today-row">
+
+                    <div class="input-group">
+
+                        <label>
+                            Data Used Today
+                        </label>
+
+                        <div class="input-with-unit">
+
+                            <input
+                                id="todayUsage"
+                                type="number"
+                                step="0.1"
+                                placeholder="e.g. 3.5"
+                            >
+
+                            <span>GB</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="check-btn"
+                        onclick="checkUsage()">
+
+                        Check My Usage
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+            <div
+                id="usageStatus"
+                class="status-card hidden">
+            </div>
+
+
+            <!-- ACTIONS -->
+            <div
+                id="actionPanel"
+                class="card hidden">
+
+                <div class="section-title">
+
+                    <div class="title-icon danger-icon">
+                        ⚡
+                    </div>
+
+                    <div>
+
+                        <h3>Smart Actions</h3>
+
+                        <p>
+                            Take control of your internet usage
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="actions-grid">
+
+                    <button
+                        class="action-btn saving"
+                        onclick="savingMode()">
+
+                        <span class="action-symbol">
+                            🛡
+                        </span>
+
+                        <span>
+                            <strong>Data Saving Mode</strong>
+                            <small>
+                                Reduce unnecessary data consumption
+                            </small>
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="action-btn blocking"
+                        onclick="blockInternet()">
+
+                        <span class="action-symbol">
+                            🔴
+                        </span>
+
+                        <span>
+                            <strong>Block Internet</strong>
+                            <small>
+                                Simulate ISP internet restriction
+                            </small>
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="actionResult"
+                    class="action-result">
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <div class="footer-brand">
+                NetWise
+            </div>
+
+            <p>
+                Built by <strong>Solution Hunters</strong>
+                · Vibe Coding Arena 2026
+            </p>
+
+            <small>
+                ISP actions are simulated for this prototype.
+            </small>
+
+        </footer>
+
+    </main>
+
+
+    <script src="/static/script.js"></script>
+
+</body>
+</html>
